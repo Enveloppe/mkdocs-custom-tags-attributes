@@ -1,9 +1,10 @@
 from setuptools import setup, find_packages
 
+version = '0.1.0'
+
 with open('README.md', 'r', encoding='utf-8') as f:
     long_description = f.read()
 
-version = '0.0.1'
 with open("requirements.txt") as f:
     required = f.read().splitlines()
 
