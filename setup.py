@@ -14,7 +14,7 @@ setup(
     description='Adding custom attributes using hashtags.',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    utl='https://github.com/Mara-Li/mkdocs-custom-tags-attributes',
+    url='https://github.com/Mara-Li/mkdocs-custom-tags-attributes',
     author='Mara-Li',
     author_email='mara-li@outlook.fr',
     license='GPL-3',
