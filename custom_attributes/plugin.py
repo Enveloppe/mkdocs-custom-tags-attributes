@@ -61,10 +61,15 @@ class CalloutsPlugin(BasePlugin):
         files_contents = markdown.split('\n')
         custom_config = self.config['file']
         markdown = ''
+        code_blocks=False
         for line in files_contents:
-            if re.search(r'#\w+', line) and not re.search(
+            if code_blocks and line.startswith('```'):
+                    code_blocks = False
+            elif line.startswith('```'):
+                code_blocks = True
+            elif re.search(r'#\w+', line) and not re.search(
                     r'(`|\[{2}|\()(.*)#(.*)(`|\]{2}|\))', line
-            ):
+            ) and not code_blocks:
                 line = convert_hashtags(config, line, custom_config)
             markdown += line + '\n'
         return markdown
