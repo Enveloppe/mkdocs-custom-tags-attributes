@@ -1,2 +1,3 @@
 Markdown
 mkdocs
+python-semantic-release
