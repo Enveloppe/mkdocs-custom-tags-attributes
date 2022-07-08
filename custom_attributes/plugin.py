@@ -5,16 +5,20 @@ from mkdocs.config import Config, config_options
 from mkdocs.plugins import BasePlugin
 from mkdocs.structure.files import Files
 from mkdocs.structure.pages import Page
+from mkdocs.exceptions import ConfigurationError
 
-
-def read_custom(config: Config, custom: str) -> list:
-    """Read the css file and take each selector and return it as a list."""
-    css_file = Path(config.get('docs_dir'), custom)
+def read_custom(config: Config) -> list:
+    """Read the css file and take each css ID selector and return it as a list."""
+    css_file = Path(config.get('docs_dir'), config.get('file'))
     css = []
-    with open(css_file, 'r', encoding='utf-8') as custom_attr:
-        for i in custom_attr.readlines():
-            if i.startswith('#'):
-                css.append(i.replace('{\n', '').strip())
+    try:
+        with open(css_file, 'r', encoding='utf-8') as custom_attr:
+            for i in custom_attr.readlines():
+                if i.startswith('#'):
+                    css.append(i.replace('{\n', '').strip())
+    except FileNotFoundError :
+        print('No CSS configured.')
+        return []
     return css
 
 
@@ -68,7 +72,7 @@ def convert_text_attributes(markdown: str, config: Config) -> str:
         elif re.search(r'#\w+', line) and not re.search(
                 r'(`|\[{2}|\()(.*)#(.*)(`|\]{2}|\))', line
         ) and not code_blocks:
-            line = convert_hashtags(config, line, custom_config)
+            line = convert_hashtags(config, line)
         markdown += line + '\n'
     return markdown
 
