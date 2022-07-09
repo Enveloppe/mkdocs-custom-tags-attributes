@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.7 (2022-07-09)
+### Fix
+* Better reading css ([`54f24ca`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/54f24ca7d120d5f3e77eb6ffc5036e4d0e76ffe3))
+
+### Documentation
+* **typo:** Typo ([`13d5516`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/13d55162ba7e990e57d40ca8294c248fa344ee96))
+
 ## v0.1.6 (2022-07-09)
 ### Fix
 * Attributes for all paragraph combined with attributes on word ([`8bc1809`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/8bc1809ae8b84f3f82067e7a59b9e656ca7bb95f))
