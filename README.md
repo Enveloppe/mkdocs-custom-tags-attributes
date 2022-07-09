@@ -61,15 +61,15 @@ Little example : align to right a text.
 
 The text : 
 ```markdown
-text to left#left
+text to right#right
 ```
 Will become :
 ```markdown
-**text to left**{: #left}\n
+**text to right**{: #right}\n
 ```
 or in html : 
 ```html
-<p><strong id="left">text to left</strong></p>
+<p><strong id="right">text to right</strong></p>
 ```
 
 > 💭 You can note that I choose to use bold to mark the inline attribute. You can remove it with `font-weight: normal;` in the css file when specify your tags.
@@ -79,15 +79,15 @@ First, any inline attributes placed in the end of the line will be applied on th
 
 There is a lot of possible example, so you can check the tests to saw behavior. Please, also refer to the [attribute list documentation](https://python-markdown.github.io/extensions/attr_list/).
 
-| original                                                            | converted attribute                                                                 | html                                                                                                                  |
-|---------------------------------------------------------------------|-------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
-| `text to left#left`                                                 | `**text to left**{: #left}`                                                         | `<p><strong id="left">text to left</strong></p>`                                                                       |
-| `#FFXIV`                                                            | `**FFXIV**{: #FFXIV .hash}`                                                         | `<p><strong class="hash" id="FFXIV">FFXIV</strong></p>`                                                               |
-| `#FFXIV #other`                                                     | `**FFXIV**{: #FFXIV .hash} **other**{: #other .hash}`                               | `<p><strong class="hash" id="FFXIV">FFXIV</strong> <strong class="hash" id="other">other</strong></p>`                |
-| `text1#left text2#left`                                             | `**text1 text2**{: #left}`                                                          | `<p><strong id="left">text1 text2</strong></p>`                                                                       |
-| `Lorem ipsum dolor#blue sit amet, consectetur adipiscing elit#left` | `**Lorem ipsum **dolor**{: #blue} sit amet, consectetur adipiscing elit**{: #left}` | `<p><strong>Lorem ipsum </strong>dolor<strong id="left">{: #blue} sit amet, consectetur adipiscing elit</strong></p>` |
-| `to left#left #FFXIV`                                               | `to **left**{: #left} **FFXIV**{: #FFXIV .hash}`                                    | `<p>to <strong id="left">left</strong> <strong class="hash" id="FFXIV">FFXIV</strong></p>`                            |
-| `lorem ipsum with #FFXIV and #left`[^1]                             | `lorem ipsum with **FFXIV**{: #FFXIV .hash} and \n{: #left}`                        | `<p id="left">lorem ipsum with <strong class="hash" id="FFXIV">FFXIV</strong> and <br /></p>`                         |
+| original                                                             | converted attribute                                                                  | html                                                                                                                   |
+|----------------------------------------------------------------------|--------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
+| `text to right#right`                                                | `**text to right**{: #right}`                                                        | `<p><strong id="right">text to right</strong></p>`                                                                     |
+| `#FFXIV`                                                             | `**FFXIV**{: #FFXIV .hash}`                                                          | `<p><strong class="hash" id="FFXIV">FFXIV</strong></p>`                                                                |
+| `#FFXIV #other`                                                      | `**FFXIV**{: #FFXIV .hash} **other**{: #other .hash}`                                | `<p><strong class="hash" id="FFXIV">FFXIV</strong> <strong class="hash" id="other">other</strong></p>`                 |
+| `text1#right text2#right`                                            | `**text1 text2**{: #right}`                                                          | `<p><strong id="right">text1 text2</strong></p>`                                                                       |
+| `Lorem ipsum dolor#blue sit amet, consectetur adipiscing elit#right` | `**Lorem ipsum **dolor**{: #blue} sit amet, consectetur adipiscing elit**{: #right}` | `<p><strong>Lorem ipsum </strong>dolor<strong id="right">{: #blue} sit amet, consectetur adipiscing elit</strong></p>` |
+| `to right#right #FFXIV`                                              | `to **right**{: #right} **FFXIV**{: #FFXIV .hash}`                                   | `<p>to <strong id="right">right</strong> <strong class="hash" id="FFXIV">FFXIV</strong></p>`                           |
+| `lorem ipsum with #FFXIV and #right`[^1]                             | `lorem ipsum with **FFXIV**{: #FFXIV .hash} and \n{: #right}`                        | `<p id="right">lorem ipsum with <strong class="hash" id="FFXIV">FFXIV</strong> and <br /></p>`                         |
 
 
 
