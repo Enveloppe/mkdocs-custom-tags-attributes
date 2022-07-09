@@ -23,5 +23,5 @@ setup(
     tests_require=['pytest'],
     packages=find_packages(),
     keywords="mkdocs, custom attributes, pymdownx, markdown extension, markdown, md",
-    entry_points={'mkdocs.plugins': ['custom-attributes = custom_attributes.plugin:CalloutsPlugin']}
+    entry_points={'mkdocs.plugins': ['custom-attributes = custom_attributes.plugin:TagsAttributePlugins']}
 )
