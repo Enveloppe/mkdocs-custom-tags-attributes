@@ -14,12 +14,11 @@ def read_custom(config: dict[str, str]) -> list:
     """Read the css file and take each css ID selector and return it as a
     list."""
     css_file = Path(config.get('docs_dir'), config.get('file'))
-    css = []
     try:
         with open(css_file, 'r', encoding='utf-8') as custom_attr:
-            for i in custom_attr.readlines():
-                if i.startswith('#'):
-                    css.append(i.replace('{\n', '').strip())
+            custom_css = custom_attr.read()
+        custom_css = re.sub('\s*', '', custom_css)
+        css = re.findall(r'#\w*', custom_css, re.MULTILINE)
     except FileNotFoundError:
         print('No CSS configured.')
         return []
