@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.3 (2022-07-09)
+### Documentation
+* Add example ([`d86458c`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/d86458c3bac2824d13d2f6bc9541221448b97d88))
+
 ## v0.1.2 (2022-07-09)
 ### Fix
 * A bunch of hot fix ([`4f57944`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/4f57944d3e08e90d823c8237f861743d4c90c9be))
