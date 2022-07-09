@@ -1,3 +1,6 @@
+"""Main script that convert the #hashtags of a markdown text during the
+on_page_markdown event."""
+
 import re
 from pathlib import Path
 
@@ -104,7 +107,7 @@ def convert_text_attributes(markdown: str, config: Config) -> str:
 
 class TagsAttributePlugins(BasePlugin):
     """Reads the files and convert #tags to **tags**{: #tags .hash} Convert to
-    id if found in configuration files."""
+    id/attributes list if found in configuration files."""
     config_scheme = (
         ('file', config_options.Type(str, default='assets/css/custom_attributes.css')),
     )
