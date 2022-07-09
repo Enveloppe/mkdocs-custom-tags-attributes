@@ -79,18 +79,23 @@ First, any inline attributes placed in the end of the line will be applied on th
 
 There is a lot of possible example, so you can check the tests to saw behavior. Please, also refer to the [attribute list documentation](https://python-markdown.github.io/extensions/attr_list/).
 
-| original                                                             | converted attribute                                                                  | html                                                                                                                   |
-|----------------------------------------------------------------------|--------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| `text to right#right`                                                | `**text to right**{: #right}`                                                        | `<p><strong id="right">text to right</strong></p>`                                                                     |
-| `#FFXIV`                                                             | `**FFXIV**{: #FFXIV .hash}`                                                          | `<p><strong class="hash" id="FFXIV">FFXIV</strong></p>`                                                                |
-| `#FFXIV #other`                                                      | `**FFXIV**{: #FFXIV .hash} **other**{: #other .hash}`                                | `<p><strong class="hash" id="FFXIV">FFXIV</strong> <strong class="hash" id="other">other</strong></p>`                 |
-| `text1#right text2#right`                                            | `**text1 text2**{: #right}`                                                          | `<p><strong id="right">text1 text2</strong></p>`                                                                       |
+| original                                                             | converted attribute                                                                  | html                                                                                                                 |
+|----------------------------------------------------------------------|--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| `text to right#right`                                                | `**text to right**{: #right}`                                                        | `<p><strong id="right">text to right</strong></p>`                                                                   |
+| `#FFXIV`                                                             | `**FFXIV**{: #FFXIV .hash}`                                                          | `<p><strong class="hash" id="FFXIV">FFXIV</strong></p>`                                                              |
+| `#FFXIV #other`                                                      | `**FFXIV**{: #FFXIV .hash} **other**{: #other .hash}`                                | `<p><strong class="hash" id="FFXIV">FFXIV</strong> <strong class="hash" id="other">other</strong></p>`               |
+| `text1#right text2#right`                                            | `**text1 text2**{: #right}`                                                          | `<p><strong id="right">text1 text2</strong></p>`                                                                     |
 | `Lorem ipsum dolor#blue sit amet, consectetur adipiscing elit#right` | `**Lorem ipsum **dolor**{: #blue} sit amet, consectetur adipiscing elit**{: #right}` | `<p><strong>Lorem ipsum </strong>dolor<strong id="right">{: #blue} sit amet, consectetur adipiscing elit</strong></p>` |
-| `to right#right #FFXIV`                                              | `to **right**{: #right} **FFXIV**{: #FFXIV .hash}`                                   | `<p>to <strong id="right">right</strong> <strong class="hash" id="FFXIV">FFXIV</strong></p>`                           |
-| `lorem ipsum with #FFXIV and #right`[^1]                             | `lorem ipsum with **FFXIV**{: #FFXIV .hash} and \n{: #right}`                        | `<p id="right">lorem ipsum with <strong class="hash" id="FFXIV">FFXIV</strong> and <br /></p>`                         |
+| `to right#right #FFXIV`                                              | `to **right**{: #right} **FFXIV**{: #FFXIV .hash}`                                   | `<p>to <strong id="right">right</strong> <strong class="hash" id="FFXIV">FFXIV</strong></p>`                         |
+| `lorem ipsum with #FFXIV and #right`[^1]                             | `lorem ipsum with **FFXIV**{: #FFXIV .hash} and \n{: #right}\n`                        | `<p id="right">lorem ipsum with <strong class="hash" id="FFXIV">FFXIV</strong> and </p>`                         |
 
 [^1]: Note the absence of word before the last tags. 
 
+> ☣️ Attention! You need at last one word before each attributes to stylize unless the attributes is in the **end** of a paragraph. 
+> ☣️ An attribute in the **end** of a paragraph will stylize all the paragraph. 
+
+<u>Error example</u>:
+`lorem ipsum with #FFXIV and #blue But not right#right` -> `lorem ipsum with **FFXIV**{: #FFXIV .hash} and #blue But not right\n{: #right}\n`
 
 # Stylize tags
 
@@ -102,4 +107,27 @@ For example:
     border-radius: 5px;
 }
 ```
+
+# Test & dev :
+- The conda environment "Publish" list all requirements for developing the plugins. 
+- The package is developed using semantic-release, so please respect that.
+- You can use flake8 and pyformat to correct your code.
+
+To test the plugin : 
+```python
+from custom_attributes.plugin import convert_text_attributes, convert_hashtags
+import markdown as mk
+config = {
+        'docs_dir' : 'any_folder'
+        'file' : 'path/to/custom_attributes.css'
+    }
+text = 'any string with custom attributes'
+print(convert_text_attributes(text, config))
+```
+
+### Functions : 
+- `read_custom(config: dict[str, str] -> list` : Read the css file and take each css ID and return it as a list. Return empty list if file not found.
+- `cleanned_word(line: str, word_regex: str) -> str` : Check and convert the word before tags attributes if any. Return empty string if no word are found.
+- `convert_hashtags (config: dict[str, str], line: str) -> str`: Convert the tags attributes from the list when reading a line. 
+- `convert_text_attributes(markdown: str, config: dict[str, str]) -> str` : Read an entire Markdown text to convert line per line the hashtags and tags attributes.
 

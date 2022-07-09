@@ -27,6 +27,7 @@ def read_custom(config: dict[str, str]) -> list:
 
 
 def cleanned_word(line: str, word_regex: str) -> str:
+    """Check the word before the attributes tags"""
     word_before_tags = re.search(word_regex, line).group().strip() if re.search(word_regex,
                                                                                 line) else ''
     return word_before_tags
@@ -69,10 +70,12 @@ def convert_hashtags(config: dict[str, str], line: str) -> str:
                     word_before_tags = cleanned_word(line, word_regex)
                     if word_before_tags == '' or any(selector in line for selector in token):
                         ial = clean_line + '\n' + markup
+                        ial = ial
                     else:
                         ial = '**' + clean_line + '**' + markup
+                        ial = ial
 
-            line = ial
+            line = ial.strip()
         else:
             ial = (
                 '**'
