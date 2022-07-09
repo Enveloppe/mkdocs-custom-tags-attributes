@@ -91,11 +91,12 @@ There is a lot of possible example, so you can check the tests to saw behavior. 
 
 [^1]: Note the absence of word before the last tags. 
 
-> ☣️ Attention! You need at last one word before each attributes to stylize unless the attributes is in the **end** of a paragraph. 
-> ☣️ An attribute in the **end** of a paragraph will stylize all the paragraph. 
+**⚠️️️️ATTENTION⚠️** 
+> You need at last one word before each attributes to stylize unless the attributes is in the **end** of a paragraph. 
+> An attribute in the **end** of a paragraph will stylize all the paragraph. 
 
-<u>Error example</u>:
-`lorem ipsum with #FFXIV and #blue But not right#right` -> `lorem ipsum with **FFXIV**{: #FFXIV .hash} and #blue But not right\n{: #right}\n`
+💭 **Error example**:
+> `lorem ipsum with #FFXIV and #blue But not right#right` -> `lorem ipsum with **FFXIV**{: #FFXIV .hash} and #blue But not right\n{: #right}\n`
 
 # Stylize tags
 
