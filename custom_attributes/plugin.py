@@ -10,7 +10,7 @@ from mkdocs.structure.files import Files
 from mkdocs.structure.pages import Page
 
 
-def read_custom(config: Config) -> list:
+def read_custom(config: dict[str, str]) -> list:
     """Read the css file and take each css ID selector and return it as a
     list."""
     css_file = Path(config.get('docs_dir'), config.get('file'))
@@ -32,7 +32,7 @@ def cleanned_word(line: str, word_regex: str) -> str:
     return word_before_tags
 
 
-def convert_hashtags(config: Config, line: str) -> str:
+def convert_hashtags(config: dict[str, str], line: str) -> str:
     """Convert the tags attributes to the list attributes when reading a
     line."""
     css = read_custom(config)
@@ -54,8 +54,7 @@ def convert_hashtags(config: Config, line: str) -> str:
                     without_heading, word_regex)
 
                 replaced_tags = '**' + word_before_tags.replace(tag, markup)
-                ial = heading + \
-                    re.sub(word_regex, replaced_tags, without_heading)
+                ial = heading + re.sub(word_regex, replaced_tags, without_heading)
             else:
                 word_before_tags = cleanned_word(line, word_regex)
                 replaced_tags = '**' + word_before_tags.replace(tag, markup)
@@ -68,7 +67,7 @@ def convert_hashtags(config: Config, line: str) -> str:
                     ial = clean_line + ' ' + markup
                 else:
                     word_before_tags = cleanned_word(line, word_regex)
-                    if word_before_tags == '':
+                    if word_before_tags == '' or any(selector in line for selector in token):
                         ial = clean_line + '\n' + markup
                     else:
                         ial = '**' + clean_line + '**' + markup
@@ -86,7 +85,7 @@ def convert_hashtags(config: Config, line: str) -> str:
     return line
 
 
-def convert_text_attributes(markdown: str, config: Config) -> str:
+def convert_text_attributes(markdown: str, config: dict[str, str]) -> str:
     """Read an entire text to convert the tags attributes to the list
     attributes."""
     files_contents = markdown.split('\n')
@@ -114,4 +113,8 @@ class TagsAttributePlugins(BasePlugin):
 
     def on_page_markdown(self, markdown: str, page: Page, config: Config, files: Files) -> str:
         """Run the conversion based on the page_markdown event."""
+        config={
+            'docs_dir': config['docs_dir'],
+            'file' : self.config['file']
+        }
         return convert_text_attributes(markdown, config)
