@@ -79,6 +79,23 @@ First, any inline attributes placed in the end of the line will be applied on th
 
 There is a lot of possible example, so you can check the tests to saw behavior. Please, also refer to the [attribute list documentation](https://python-markdown.github.io/extensions/attr_list/).
 
+| original                                                            | converted attribute                                                                 | html                                                                                                                  |
+|---------------------------------------------------------------------|-------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| `text to left#left`                                                 | `**text to left**{: #left}`                                                         | <p><strong id="left">text to left</strong></p>`                                                                       |
+| `#FFXIV`                                                            | `**FFXIV**{: #FFXIV .hash}`                                                         | `<p><strong class="hash" id="FFXIV">FFXIV</strong></p>`                                                               |
+| `#FFXIV #other`                                                     | `**FFXIV**{: #FFXIV .hash} **other**{: #other .hash}`                               | `<p><strong class="hash" id="FFXIV">FFXIV</strong> <strong class="hash" id="other">other</strong></p>`                |
+| `text1#left text2#left`                                             | `**text1 text2**{: #left}`                                                          | `<p><strong id="left">text1 text2</strong></p>`                                                                       |
+| `Lorem ipsum dolor#blue sit amet, consectetur adipiscing elit#left` | `**Lorem ipsum **dolor**{: #blue} sit amet, consectetur adipiscing elit**{: #left}` | `<p><strong>Lorem ipsum </strong>dolor<strong id="left">{: #blue} sit amet, consectetur adipiscing elit</strong></p>` |
+| `to left#left #FFXIV`                                               | `to **left**{: #left} **FFXIV**{: #FFXIV .hash}`                                    | `<p>to <strong id="left">left</strong> <strong class="hash" id="FFXIV">FFXIV</strong></p>`                            |
+| `lorem ipsum with #FFXIV and #left`[^1]                             | `lorem ipsum with **FFXIV**{: #FFXIV .hash} and \n{: #left}`                        | `<p id="left">lorem ipsum with <strong class="hash" id="FFXIV">FFXIV</strong> and <br /></p>`                         |
+
+
+
+
+[^1]: Note the absence of word before the last tags. 
+
+
+
 # Stylize tags
 
 You can also custom your inline tags (hello obsidian user!) using the `.hash` class!
