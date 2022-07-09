@@ -26,7 +26,7 @@ def read_custom(config: Config) -> list:
     return css
 
 
-def cleanned_word(line: str, tags: str, word_regex: str) -> str:
+def cleanned_word(line: str, word_regex: str) -> str:
     word_before_tags = re.search(word_regex, line).group().strip() if re.search(word_regex,
                                                                                 line) else ''
     return word_before_tags
@@ -51,13 +51,13 @@ def convert_hashtags(config: Config, line: str) -> str:
                 heading = re.search('^#*', line).group() + ' '
                 without_heading = re.sub('^#*', '', line).strip()
                 word_before_tags = cleanned_word(
-                    without_heading, tag, word_regex)
+                    without_heading, word_regex)
 
                 replaced_tags = '**' + word_before_tags.replace(tag, markup)
                 ial = heading + \
                     re.sub(word_regex, replaced_tags, without_heading)
             else:
-                word_before_tags = cleanned_word(line, tag, word_regex)
+                word_before_tags = cleanned_word(line, word_regex)
                 replaced_tags = '**' + word_before_tags.replace(tag, markup)
                 ial = re.sub(word_regex, replaced_tags, line)
 
@@ -67,7 +67,7 @@ def convert_hashtags(config: Config, line: str) -> str:
                 if line.startswith('#'):
                     ial = clean_line + ' ' + markup
                 else:
-                    word_before_tags = cleanned_word(line, tag, word_regex)
+                    word_before_tags = cleanned_word(line, word_regex)
                     if word_before_tags == '':
                         ial = clean_line + '\n' + markup
                     else:
@@ -98,7 +98,7 @@ def convert_text_attributes(markdown: str, config: Config) -> str:
         elif line.startswith('```'):
             code_blocks = True
         elif re.search(r'#\w+', line) and not re.search(
-                r'(`|\[{2}|\()(.*)#(.*)(`|\]{2}|\))', line
+                r'(`|\[{2}|\()(.*)#(.*)(`|]{2}|\))', line
         ) and not code_blocks:
             line = convert_hashtags(config, line)
         markdown += line + '\n'
