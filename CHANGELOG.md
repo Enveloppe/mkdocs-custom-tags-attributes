@@ -2,6 +2,14 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.6 (2022-07-09)
+### Fix
+* Attributes for all paragraph combined with attributes on word ([`8bc1809`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/8bc1809ae8b84f3f82067e7a59b9e656ca7bb95f))
+
+### Documentation
+* Add conda environment ([`c11caa7`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/c11caa7c4070e6b0e9d375c07aa7f09ba99d08fc))
+* Add example and info ([`ea9a5c5`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/ea9a5c5a7c934dfd6ca38efa768b7bf35f26b97c))
+
 ## v0.1.5 (2022-07-09)
 ### Fix
 * Hotfix entrypoints ([`231128a`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/231128af78afdc14c085ade7334264d8b8bad18f))
