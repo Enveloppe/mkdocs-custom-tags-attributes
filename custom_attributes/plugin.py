@@ -6,8 +6,10 @@ from mkdocs.plugins import BasePlugin
 from mkdocs.structure.files import Files
 from mkdocs.structure.pages import Page
 
+
 def read_custom(config: Config) -> list:
-    """Read the css file and take each css ID selector and return it as a list."""
+    """Read the css file and take each css ID selector and return it as a
+    list."""
     css_file = Path(config.get('docs_dir'), config.get('file'))
     css = []
     try:
@@ -15,10 +17,16 @@ def read_custom(config: Config) -> list:
             for i in custom_attr.readlines():
                 if i.startswith('#'):
                     css.append(i.replace('{\n', '').strip())
-    except FileNotFoundError :
+    except FileNotFoundError:
         print('No CSS configured.')
         return []
     return css
+
+
+def cleanned_word(line: str, tags: str, word_regex: str) -> str:
+    word_before_tags = re.search(word_regex, line).group().strip() if re.search(word_regex,
+                                                                                line) else ''
+    return word_before_tags
 
 
 def convert_hashtags(config: Config, line: str) -> str:
@@ -27,51 +35,51 @@ def convert_hashtags(config: Config, line: str) -> str:
     css = read_custom(config)
     token = re.findall(r'#\w+', line)
     token = list(set(token))
-    for i, tags in enumerate(token):
-        if tags in css:
-            clean_line = line.replace(tags, '')
+    for tag in token:
+        if tag in css:
+            clean_line = line.replace(tag, '')
 
             if len(clean_line.strip()) == 0:
                 return line
-            markup = "**{: " + tags +'}'
-            word_regex=r"\w+"+re.escape(tags)
+            markup = '**{: ' + tag + '}'
+            word_regex = r'\w+'+re.escape(tag)
 
             if line.startswith('#'):
-                heading = re.search('^#*', line).group()
+                heading = re.search('^#*', line).group() + ' '
                 without_heading = re.sub('^#*', '', line).strip()
-                word_before_tags = re.search(word_regex, without_heading).group().strip() if re.search(word_regex,
-                                                                                                       without_heading) else ""
+                word_before_tags = cleanned_word(
+                    without_heading, tag, word_regex)
 
-                replaced_tags = "**" + word_before_tags.replace(tags, markup)
-                ial = heading + " " + re.sub(word_regex, replaced_tags, without_heading)
+                replaced_tags = '**' + word_before_tags.replace(tag, markup)
+                ial = heading + \
+                    re.sub(word_regex, replaced_tags, without_heading)
             else:
-                word_before_tags = re.search(word_regex, line).group().strip() if re.search(word_regex, line) else ""
-                replaced_tags = "**" + word_before_tags.replace(tags, markup)
+                word_before_tags = cleanned_word(line, tag, word_regex)
+                replaced_tags = '**' + word_before_tags.replace(tag, markup)
                 ial = re.sub(word_regex, replaced_tags, line)
 
-            if line.strip().rstrip().lstrip().replace('\n', '').endswith(tags):
+            if line.strip().rstrip().lstrip().replace('\n', '').endswith(tag):
                 markup = markup.replace('**', '')
-                word_regex = r"\S+"+re.escape(tags)
+                word_regex = r'\S+'+re.escape(tag)
                 if line.startswith('#'):
                     ial = clean_line + ' ' + markup
                 else:
-                    word_before_tags = re.search(word_regex, line).group().strip() if re.search(word_regex,
-                                                                                                line) else ""
+                    word_before_tags = cleanned_word(line, tag, word_regex)
                     if word_before_tags == '':
                         ial = clean_line + '\n' + markup
                     else:
-                        ial = "**" + clean_line + '**' + markup
+                        ial = '**' + clean_line + '**' + markup
 
             line = ial
         else:
             ial = (
                 '**'
-                + tags.replace('#', ' ').strip()
+                + tag.replace('#', ' ').strip()
                 + '**{: '
-                + tags.strip()
+                + tag.strip()
                 + ' .hash}'
             )
-            line = line.replace(tags, ial, 1)
+            line = line.replace(tag, ial, 1)
     return line
 
 
