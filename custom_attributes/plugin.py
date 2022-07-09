@@ -5,7 +5,6 @@ from mkdocs.config import Config, config_options
 from mkdocs.plugins import BasePlugin
 from mkdocs.structure.files import Files
 from mkdocs.structure.pages import Page
-from mkdocs.exceptions import ConfigurationError
 
 def read_custom(config: Config) -> list:
     """Read the css file and take each css ID selector and return it as a list."""
@@ -22,29 +21,48 @@ def read_custom(config: Config) -> list:
     return css
 
 
-def convert_hashtags(config: Config, line: str, custom_configuration: str) -> str:
+def convert_hashtags(config: Config, line: str) -> str:
     """Convert the tags attributes to the list attributes when reading a
     line."""
-    css = read_custom(config, custom_configuration)
+    css = read_custom(config)
     token = re.findall(r'#\w+', line)
     token = list(set(token))
-    for i, value in enumerate(token):
-        tags = token[i]
+    for i, tags in enumerate(token):
         if tags in css:
-            original_line = line
-            line = line.replace(tags, '')
-            if len(line.strip()) == 0:
-                return original_line
+            clean_line = line.replace(tags, '')
+
+            if len(clean_line.strip()) == 0:
+                return line
+            markup = "**{: " + tags +'}'
+            word_regex=r"\w+"+re.escape(tags)
+
             if line.startswith('#'):
-                heading = re.findall('#', line)
-                heading = ''.join(heading)
-                ial = (
-                    heading + ' **' + line.replace('#', '').strip()
-                    + '**{: ' + tags + '}'
-                )
+                heading = re.search('^#*', line).group()
+                without_heading = re.sub('^#*', '', line).strip()
+                word_before_tags = re.search(word_regex, without_heading).group().strip() if re.search(word_regex,
+                                                                                                       without_heading) else ""
+
+                replaced_tags = "**" + word_before_tags.replace(tags, markup)
+                ial = heading + " " + re.sub(word_regex, replaced_tags, without_heading)
             else:
-                ial = '**' + line.strip() + '**{: ' + tags + '}'
-            line = line.replace(line, ial)
+                word_before_tags = re.search(word_regex, line).group().strip() if re.search(word_regex, line) else ""
+                replaced_tags = "**" + word_before_tags.replace(tags, markup)
+                ial = re.sub(word_regex, replaced_tags, line)
+
+            if line.strip().rstrip().lstrip().replace('\n', '').endswith(tags):
+                markup = markup.replace('**', '')
+                word_regex = r"\S+"+re.escape(tags)
+                if line.startswith('#'):
+                    ial = clean_line + ' ' + markup
+                else:
+                    word_before_tags = re.search(word_regex, line).group().strip() if re.search(word_regex,
+                                                                                                line) else ""
+                    if word_before_tags == '':
+                        ial = clean_line + '\n' + markup
+                    else:
+                        ial = "**" + clean_line + '**' + markup
+
+            line = ial
         else:
             ial = (
                 '**'
@@ -53,7 +71,7 @@ def convert_hashtags(config: Config, line: str, custom_configuration: str) -> st
                 + tags.strip()
                 + ' .hash}'
             )
-            line = line.replace(token[i], ial, 1)
+            line = line.replace(tags, ial, 1)
     return line
 
 
@@ -61,7 +79,6 @@ def convert_text_attributes(markdown: str, config: Config) -> str:
     """Read an entire text to convert the tags attributes to the list
     attributes."""
     files_contents = markdown.split('\n')
-    custom_config = config['file']
     markdown = ''
     code_blocks = False
     for line in files_contents:

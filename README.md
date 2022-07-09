@@ -15,7 +15,7 @@ plugins:
   - search
   - custom_attributes
 ```
-Note: If you have no plugins entry in your config file yet, you'll likely also want to add the search plugin. MkDocs enables it by default if there is no plugins entry set, but now you have to enable it explicitly.
+Note: If you have no plugin entry in your config file yet, you'll likely also want to add the search plugin. MkDocs enables it by default if there is no plugin entry set, but now you have to enable it explicitly.
 
 You need to create an `custom_attributes.css` if you want to create inline attributes!
 
@@ -61,20 +61,23 @@ Little example : align to right a text.
 
 The text : 
 ```markdown
-lorem ipsum#left
+text to left#left
 ```
 Will become :
 ```markdown
-lorem ipsum**{: #left}**
+**text to left**{: #left}\n
 ```
 or in html : 
 ```html
-<p>
-    <strong id="left">lorem ipsum</strong>
-</p>
+<p><strong id="left">text to left</strong></p>
 ```
 
 > 💭 You can note that I choose to use bold to mark the inline attribute. You can remove it with `font-weight: normal;` in the css file when specify your tags.
+
+Also, some inlines attribute can be a bit strange. 
+First, any inline attributes placed in the end of the line will be applied on the entire paragraph. 
+
+There is a lot of possible example, so you can check the tests to saw behavior. Please, also refer to the [attribute list documentation](https://python-markdown.github.io/extensions/attr_list/).
 
 # Stylize tags
 
