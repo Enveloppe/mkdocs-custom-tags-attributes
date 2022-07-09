@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.5 (2022-07-09)
+### Fix
+* Hotfix entrypoints ([`231128a`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/231128af78afdc14c085ade7334264d8b8bad18f))
+
 ## v0.1.4 (2022-07-09)
 ### Fix
 * Remove uncessary requirements ([`deb799b`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/deb799b0730481b8bd43fb5fe5f1a7b985f48e08))
