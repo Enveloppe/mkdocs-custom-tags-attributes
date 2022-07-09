@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.2 (2022-07-09)
+### Fix
+* A bunch of hot fix ([`4f57944`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/4f57944d3e08e90d823c8237f861743d4c90c9be))
+
 ## v0.1.1 (2022-07-07)
 ### Fix
 * No hashtags convertion in code_blocks ([`7742922`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/7742922f8c85208907c306337cb7b8fb245b0d79))
