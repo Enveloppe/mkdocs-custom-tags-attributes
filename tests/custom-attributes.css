@@ -1,9 +1,9 @@
-#left {
+#left, #yellow {
     color: red;
     text-align: right;
 }
 
-#right {
+#right, .class_no_select {
     color: red;
     text-align: right;
 }
@@ -11,8 +11,4 @@
 #blue {
     background-color: lightblue;
     border-radius: 5px;
-}
-
-.class_no_select {
-    display: none;
 }
