@@ -89,11 +89,7 @@ There is a lot of possible example, so you can check the tests to saw behavior. 
 | `to right#right #FFXIV`                                              | `to **right**{: #right} **FFXIV**{: #FFXIV .hash}`                                   | `<p>to <strong id="right">right</strong> <strong class="hash" id="FFXIV">FFXIV</strong></p>`                           |
 | `lorem ipsum with #FFXIV and #right`[^1]                             | `lorem ipsum with **FFXIV**{: #FFXIV .hash} and \n{: #right}`                        | `<p id="right">lorem ipsum with <strong class="hash" id="FFXIV">FFXIV</strong> and <br /></p>`                         |
 
-
-
-
 [^1]: Note the absence of word before the last tags. 
-
 
 
 # Stylize tags
