@@ -2,6 +2,15 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.4 (2022-07-09)
+### Fix
+* Remove uncessary requirements ([`deb799b`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/deb799b0730481b8bd43fb5fe5f1a7b985f48e08))
+
+### Documentation
+* Typo ([`5c269c6`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/5c269c69edcffc06c11d1a63ef865b5383e95e52))
+* Typo ([`a7b3abd`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/a7b3abdac045895dc845eca470410963b5aae17e))
+* Typo ([`2e08fb7`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/2e08fb702b187e4256fa93004290bd1851258160))
+
 ## v0.1.3 (2022-07-09)
 ### Documentation
 * Add example ([`d86458c`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/d86458c3bac2824d13d2f6bc9541221448b97d88))
