@@ -17,7 +17,7 @@ class MyTestCase(unittest.TestCase):
     def test_tags(self):
         """check [test/custom-attributes] with config."""
         css = read_custom(self.config)
-        self.assertEqual(css, ['#left', '#blue'])
+        self.assertEqual(css, ['#left', '#yellow', '#right', '#blue'])
 
     def test_convert_line_with_attributes(self):
         """Test a simple line with **attributes**

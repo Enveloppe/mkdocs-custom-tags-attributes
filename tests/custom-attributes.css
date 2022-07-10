@@ -6,9 +6,7 @@
 #right, .class_no_select {
     color: red;
     text-align: right;
-}
-
-#blue {
+}#blue {
     background-color: lightblue;
     border-radius: 5px;
 }

@@ -17,12 +17,13 @@ def read_custom(config: dict[str, str]) -> list:
     try:
         with open(css_file, 'r', encoding='utf-8') as custom_attr:
             custom_css = custom_attr.read()
-        custom_css = re.sub(r'\s*', '', custom_css)
-        css = re.findall(r'#\S*', custom_css, re.MULTILINE)
+        custom_css = re.sub(r'[\t\n]', '', custom_css)
+        custom_css = re.sub(r'\{.*?\}', ',', custom_css)
+        custom_css = custom_css.split(',')
+        return [i.strip() for i in custom_css if i.strip().startswith('#')]
     except FileNotFoundError:
         print('No CSS configured.')
         return []
-    return css
 
 
 def cleanned_word(line: str, word_regex: str) -> str:
