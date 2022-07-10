@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.9 (2022-07-10)
+### Fix
+* Better parsing of CSS ID ([`b7eb809`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/b7eb809d5b678ef52e99413b7aecc0a3b72777cd))
+
 ## v0.1.8 (2022-07-10)
 ### Fix
 * **css:** Update regex to recognize maximum id selector ([`0837137`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/08371376efc0fc3e71384d74e71e704bac42f458))
