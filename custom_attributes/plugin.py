@@ -1,4 +1,4 @@
-"""Main script that convert the #hashtags of a markdown text during the
+"""Main script that convert the #hashtags of a Markdown text during the
 on_page_markdown event."""
 
 import re
@@ -17,8 +17,8 @@ def read_custom(config: dict[str, str]) -> list:
     try:
         with open(css_file, 'r', encoding='utf-8') as custom_attr:
             custom_css = custom_attr.read()
-        custom_css = re.sub('\s*', '', custom_css)
-        css = re.findall(r'#\w*', custom_css, re.MULTILINE)
+        custom_css = re.sub(r'\s*', '', custom_css)
+        css = re.findall(r'#\S*', custom_css, re.MULTILINE)
     except FileNotFoundError:
         print('No CSS configured.')
         return []
@@ -27,8 +27,10 @@ def read_custom(config: dict[str, str]) -> list:
 
 def cleanned_word(line: str, word_regex: str) -> str:
     """Check the word before the attributes tags"""
-    word_before_tags = re.search(word_regex, line).group().strip() if re.search(word_regex,
-                                                                                line) else ''
+    if re.search(word_regex, line):
+        word_before_tags = re.search(word_regex, line).group().strip()
+    else:
+        word_before_tags = ''
     return word_before_tags
 
 
@@ -54,7 +56,8 @@ def convert_hashtags(config: dict[str, str], line: str) -> str:
                     without_heading, word_regex)
 
                 replaced_tags = '**' + word_before_tags.replace(tag, markup)
-                ial = heading + re.sub(word_regex, replaced_tags, without_heading)
+                ial = heading + \
+                    re.sub(word_regex, replaced_tags, without_heading)
             else:
                 word_before_tags = cleanned_word(line, word_regex)
                 replaced_tags = '**' + word_before_tags.replace(tag, markup)
@@ -82,7 +85,7 @@ def convert_hashtags(config: dict[str, str], line: str) -> str:
                 + '**{: '
                 + tag.strip()
                 + ' .hash}'
-            )
+                )
             line = line.replace(tag, ial, 1)
     return line
 
@@ -99,8 +102,8 @@ def convert_text_attributes(markdown: str, config: dict[str, str]) -> str:
         elif line.startswith('```'):
             code_blocks = True
         elif re.search(r'#\w+', line) and not re.search(
-                r'(`|\[{2}|\()(.*)#(.*)(`|]{2}|\))', line
-        ) and not code_blocks:
+            r'(`|\[{2}|\()(.*)#(.*)(`|]{2}|\))', line
+                ) and not code_blocks:
             line = convert_hashtags(config, line)
         markdown += line + '\n'
     return markdown
@@ -111,12 +114,12 @@ class TagsAttributePlugins(BasePlugin):
     id/attributes list if found in configuration files."""
     config_scheme = (
         ('file', config_options.Type(str, default='assets/css/custom_attributes.css')),
-    )
+        )
 
     def on_page_markdown(self, markdown: str, page: Page, config: Config, files: Files) -> str:
         """Run the conversion based on the page_markdown event."""
-        config={
+        config = {
             'docs_dir': config['docs_dir'],
-            'file' : self.config['file']
-        }
+            'file': self.config['file']
+            }
         return convert_text_attributes(markdown, config)
