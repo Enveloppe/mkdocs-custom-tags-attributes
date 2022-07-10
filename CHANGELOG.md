@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.8 (2022-07-10)
+### Fix
+* **css:** Update regex to recognize maximum id selector ([`0837137`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/08371376efc0fc3e71384d74e71e704bac42f458))
+
 ## v0.1.7 (2022-07-09)
 ### Fix
 * Better reading css ([`54f24ca`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/54f24ca7d120d5f3e77eb6ffc5036e4d0e76ffe3))
