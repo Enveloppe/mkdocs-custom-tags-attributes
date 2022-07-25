@@ -18,7 +18,7 @@ setup(
     author='Mara-Li',
     author_email='mara-li@outlook.fr',
     license='GPL-3',
-    python_requires='>=3.10',
+    python_requires='>=3.8',
     install_requires=required,
     tests_require=['pytest'],
     packages=find_packages(),

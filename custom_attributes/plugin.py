@@ -3,14 +3,14 @@ on_page_markdown event."""
 
 import re
 from pathlib import Path
-
+from typing import Union, List, Dict
 from mkdocs.config import Config, config_options
 from mkdocs.plugins import BasePlugin
 from mkdocs.structure.files import Files
 from mkdocs.structure.pages import Page
 
 
-def read_custom(config: dict[str, str]) -> list:
+def read_custom(config: Dict[str, str]) -> List[str]:
     """Read the css file and take each css ID selector and return it as a
     list."""
     css_file = Path(config.get('docs_dir'), config.get('file'))
@@ -35,7 +35,7 @@ def cleanned_word(line: str, word_regex: str) -> str:
     return word_before_tags
 
 
-def convert_hashtags(config: dict[str, str], line: str) -> str:
+def convert_hashtags(config: Dict[str, str], line: str) -> str:
     """Convert the tags attributes to the list attributes when reading a
     line."""
     css = read_custom(config)
@@ -91,7 +91,7 @@ def convert_hashtags(config: dict[str, str], line: str) -> str:
     return line
 
 
-def convert_text_attributes(markdown: str, config: dict[str, str]) -> str:
+def convert_text_attributes(markdown: str, config: Dict[str, str]) -> str:
     """Read an entire text to convert the tags attributes to the list
     attributes."""
     files_contents = markdown.split('\n')
