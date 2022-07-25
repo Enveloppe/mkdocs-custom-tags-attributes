@@ -2,6 +2,9 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.0 (2022-07-25)
+
+
 ## v0.1.9 (2022-07-10)
 ### Fix
 * Better parsing of CSS ID ([`b7eb809`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/b7eb809d5b678ef52e99413b7aecc0a3b72777cd))
