@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '0.2.0'
+version = '0.2.1'
 
 with open('README.md', 'r', encoding='utf-8') as f:
     long_description = f.read()
@@ -18,7 +18,7 @@ setup(
     author='Mara-Li',
     author_email='mara-li@outlook.fr',
     license='GPL-3',
-    python_requires='>=3.8',
+    python_requires='>=3.7',
     install_requires=required,
     tests_require=['pytest'],
     packages=find_packages(),
