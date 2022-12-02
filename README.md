@@ -13,7 +13,7 @@ First, add the plugin in your `mkdocs.yml`:
 ```yml
 plugins:
   - search
-  - custom_attributes
+  - custom-attributes
 ```
 Note: If you have no plugin entry in your config file yet, you'll likely also want to add the search plugin. MkDocs enables it by default if there is no plugin entry set, but now you have to enable it explicitly.
 
@@ -25,7 +25,7 @@ You can specify the css file in your `mkdocs.yml`:
 ```yaml
 plugins:
   - search
-  - custom_attributes:
+  - custom-attributes:
       file: assets/css/custom_attributes.css
 ```
 
