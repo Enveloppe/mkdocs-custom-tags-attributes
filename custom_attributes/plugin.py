@@ -9,7 +9,6 @@ from mkdocs.plugins import BasePlugin
 from mkdocs.structure.files import Files
 from mkdocs.structure.pages import Page
 
-
 def read_custom(config: Dict[str, str]) -> List[str]:
     """Read the css file and take each css ID selector and return it as a
     list."""
@@ -39,7 +38,7 @@ def convert_hashtags(config: Dict[str, str], line: str) -> str:
     """Convert the tags attributes to the list attributes when reading a
     line."""
     css = read_custom(config)
-    token = re.findall(r'#\w+', line)
+    token = re.findall(r'#[\w\-_\/]+', line)
     token = list(set(token))
     for tag in token:
         if tag in css:
