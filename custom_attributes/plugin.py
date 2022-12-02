@@ -98,9 +98,9 @@ def convert_text_attributes(markdown: str, config: Dict[str, str]) -> str:
     markdown = ''
     code_blocks = False
     for line in files_contents:
-        if code_blocks and line.startswith('```'):
+        if code_blocks and (line.startswith('```') or re.search('</.*?>', line)):
             code_blocks = False
-        elif line.startswith('```'):
+        elif line.startswith('```') or re.search('<.*?>', line):
             code_blocks = True
         elif re.search(r'#\w+', line) and not re.search(
             r'(`|\[{2}|\()(.*)#(.*)(`|]{2}|\))', line
