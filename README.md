@@ -36,7 +36,23 @@ extra_css:
   - assets/css/custom_attributes.css
 ```
 
-# Inline attributes
+# Allowed characters
+
+The only symbols allowed in tags are :
+- `_` (underscore)
+- `-` (dash)
+- `/` (forward slash)
+
+You can use these case styles/formats :
+- camelCase : `#myTag`
+- PascalCase : `#MyTag`
+- snake_case : `#my_tag`
+- kebab-case : `#my-tag`
+
+Nested tags (like `#myTag/mySubTag`) are recognized.
+
+# Styling usage
+## Inline attributes
 
 After this, in the css file, you can add inline attribute, automatically parsed by the plugin. Each tags must be an [css id](https://developer.mozilla.org/en-US/docs/Web/CSS/ID_selectors), aka prepend with `#`.
 
@@ -98,7 +114,7 @@ There is a lot of possible example, so you can check the tests to saw behavior. 
 💭 **Error example**:
 > `lorem ipsum with #FFXIV and #blue But not right#right` -> `lorem ipsum with **FFXIV**{: #FFXIV .hash} and #blue But not right\n{: #right}\n`
 
-# Stylize tags
+## Tags
 
 You can also custom your inline tags (hello obsidian user!) using the `.hash` class!
 For example:
