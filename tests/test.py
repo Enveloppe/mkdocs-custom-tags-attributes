@@ -1,4 +1,3 @@
-import imp
 import unittest
 import markdown
 import os
