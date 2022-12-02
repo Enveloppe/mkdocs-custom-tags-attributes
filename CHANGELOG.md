@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.2 (2022-12-02)
+### Fix
+* Hashtags converted in html blocks ([`98b5e5b`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/98b5e5b8dfc08ae98eca088fb249e1ed33d95c1d))
+
 ## v0.2.1 (2022-07-28)
 
 
