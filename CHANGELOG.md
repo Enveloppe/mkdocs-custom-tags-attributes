@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.0 (2022-12-02)
+### Feature
+* Adding support for -\_ characters ([`c2f02a8`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/c2f02a86c31c8bd00f53c177cc36a74b71ba04b5))
+
+### Fix
+* Typo in README ([`2e90848`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/2e908482d6ad079e6c02939d5ece797cecfa1084))
+
 ## v0.2.2 (2022-12-02)
 ### Fix
 * Hashtags converted in html blocks ([`98b5e5b`](https://github.com/Mara-Li/mkdocs-custom-tags-attributes/commit/98b5e5b8dfc08ae98eca088fb249e1ed33d95c1d))
