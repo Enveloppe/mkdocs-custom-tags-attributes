@@ -6,8 +6,12 @@ name = "pypi"
 [packages]
 mkdocs = "*"
 markdown = "*"
+python-semantic-release = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.12"
+
+[scripts]
+bump = "semantic-release publish"
