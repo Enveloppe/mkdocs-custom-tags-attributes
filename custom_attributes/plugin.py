@@ -39,7 +39,6 @@ def convert_hashtags(config: Dict[str, str], line: str) -> str:
     css = read_custom(config)
     token = re.findall(r"#[\w\-_\/]+", line)
     token = list(set(token))
-    print(token)
     for tag in token:
         if tag in css:
             clean_line = line.replace(tag, "")
@@ -90,18 +89,21 @@ def convert_text_attributes(markdown: str, config: Dict[str, str]) -> str:
     markdown = ""
     code_blocks = False
     for line in files_contents:
-        if code_blocks and (
+        if not code_blocks and (
             line.startswith("```")
-            or re.search("</.*?>", line)
+            or (re.search("<.*?>", line) and not re.search("</.*?>", line))
+            or re.search(r"^\s*```(.*)", line)
+        ):
+            code_blocks = True
+            print("START OF BLOCK ----- ", line)
+        elif code_blocks and (
+            line.startswith("```")
+            or re.search("</?.*?>", line)
             or re.search(r"^\s*```", line)
         ):
             code_blocks = False
-        elif (
-            line.startswith("```")
-            or re.search("<.*?>", line)
-            or re.search(r"^\s*```", line)
-        ):
-            code_blocks = True
+            print("END OF BLOCK ----- ", line)
+
         elif (
             re.search(r"#\w+", line)
             and not re.search(r"(`|\[{2}|\()(.*)#(.*)(`|]{2}|\))", line)
