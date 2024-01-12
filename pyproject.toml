@@ -52,3 +52,13 @@ env = "GH_TOKEN"
 [tool.semantic_release.publish]
 dist_glob_patterns = ["dist/*"]
 upload_to_vcs_release = true
+
+[tool.ruff]
+exclude = ["tests", "docs", "build", "dist", "venv", "venv3", "venv3.6", "venv3.7", "venv3.8", "venv3.9", "venv3.10", "__pycache__"]
+
+[tool.ruff.lint]
+select = ["PTH", "ANN", "N", "Q", "PL", "E", "F", "I"]
+ignore = ["E501"]
+
+[tool.ruff.flake8-quotes]
+inline-quotes = "double"
