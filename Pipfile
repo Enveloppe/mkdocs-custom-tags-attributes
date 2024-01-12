@@ -19,7 +19,7 @@ python_version = "3.12"
 
 [scripts]
 black = "black ."
-dist = "python -m build --sdist --wheel --outdir dist"
+dist = "rm -r -Force dist && python -m build --sdist --wheel --outdir dist"
 upload = "twine upload dist/*"
 version="semantic-release version"
 publish = "semantic-release publish"
