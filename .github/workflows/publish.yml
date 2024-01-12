@@ -1,32 +1,26 @@
-name: Semantic Release
-
+name: Publish
 on:
   push:
-    branches:
-      - main
-      
-permissions:
-  id-token: write
+    tags:
+      - v*
 
 jobs:
-  release:
+  pypi-publish:
     runs-on: ubuntu-latest
-    concurrency: release
-
+    environment:
+      name: pypi
+      url: https://pypi.org/p/mkdocs-custom-tags-attributes
+    permissions:
+      id-token: write
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    - name: Python Semantic Release
-      uses: python-semantic-release/python-semantic-release@master
-      id: release
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Publish to Pypi
-      uses: pypa/gh-action-pypi-publish@release/v1
-      if: steps.release.outputs.released == 'true'
-    - name: Publish to GitHub Release
-      if: steps.release.outputs.released == 'true'
-      uses: python-semantic-release/upload-to-gh-release@main
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v3
+      - name: Python
+        uses: palewire/install-python-pipenv-pipfile@v3
+        with:
+          python-version: 3.12
+      - name: Build
+        run: |
+          pipenv install --dev
+          pipenv run dist
+      - name: Publish to Pypi
+        uses: pypa/gh-action-pypi-publish@release/v1

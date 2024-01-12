@@ -8,6 +8,8 @@ mkdocs = "*"
 markdown = "*"
 python-semantic-release = "*"
 rich = "*"
+twine = "*"
+build = "*"
 
 [dev-packages]
 
