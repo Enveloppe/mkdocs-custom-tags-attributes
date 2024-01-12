@@ -82,6 +82,12 @@ class MyTestCase(unittest.TestCase):
         tested_markup = self.attr_list(line)
         self.assertEqual(tested_markup, expected_markup)
 
+    def test_multiple_attributes_plus_tags(self):
+        line = "Lorem ipsum dolor sit amet, consectetur adipiscing#blue elit. In mollis, libero porttitor gravida accumsan, justo metus pulvinar nulla, vitae dictum odio ligula non nisl. Vivamus id venenatis nulla. Nullam sed euismod ligula. Pellentesque tempor elit felis, lobortis vulputate risus gravida et. Curabitur auctor sed libero nec consectetur. Nam placerat rhoncus risus, euismod sagittis eros bibendum ac. Maecenas tellus libero, porttitor ac purus sit amet, viverra suscipit dolor. Proin id nisl velit. Ut at tincidunt libero, ac pharetra mi. Integer non luctus nisi.#right"
+        expected_markup = '<p id="right">Lorem ipsum dolor sit amet, consectetur <strong id="blue">adipiscing</strong> elit. In mollis, libero porttitor gravida accumsan, justo metus pulvinar nulla, vitae dictum odio ligula non nisl. Vivamus id venenatis nulla. Nullam sed euismod ligula. Pellentesque tempor elit felis, lobortis vulputate risus gravida et. Curabitur auctor sed libero nec consectetur. Nam placerat rhoncus risus, euismod sagittis eros bibendum ac. Maecenas tellus libero, porttitor ac purus sit amet, viverra suscipit dolor. Proin id nisl velit. Ut at tincidunt libero, ac pharetra mi. Integer non luctus nisi.<br /></p>'
+        tested_markup = self.attr_list(line)
+        self.assertEqual(tested_markup, expected_markup)
+
     def test_attributes_plus_tags(self):
         """Test an attributes coupled with a tag.
 
