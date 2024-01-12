@@ -5,6 +5,7 @@ commit_parser = "angular"
 logging_use_named_masks = false
 major_on_zero = true
 tag_format = "v{version}"
+version_variable = "setup.py:version"
 
 [tool.semantic_release.branches.main]
 match = "(main|master)"

@@ -1,0 +1,13 @@
+{
+	"GitHooks.hooksDirectory": "e:\\Documents\\Github\\Obsidian Publisher\\Mkdocs\\mkdocs-custom-tags-attributes\\.git\\hooks",
+	"python.testing.pytestArgs": [],
+	"python.testing.unittestEnabled": true,
+	"python.testing.pytestEnabled": false,
+	"python.testing.unittestArgs": [
+		"-v",
+		"-s",
+		"./tests",
+		"-p",
+		"*test.py"
+	]
+}

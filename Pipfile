@@ -7,6 +7,7 @@ name = "pypi"
 mkdocs = "*"
 markdown = "*"
 python-semantic-release = "*"
+rich = "*"
 
 [dev-packages]
 
@@ -14,5 +15,9 @@ python-semantic-release = "*"
 python_version = "3.12"
 
 [scripts]
-build = "python setup.py sdist bdist_wheel"
-bump = "semantic-release version && twine upload dist/* && semantic-release publish"
+black = "black ."
+dist = "python -m build --sdist --wheel --outdir dist"
+upload = "twine upload dist/*"
+version="semantic-release version"
+publish = "semantic-release publish"
+release = "pipenv run version && pipenv run upload && pipenv run publish"

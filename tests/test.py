@@ -118,9 +118,10 @@ class MyTestCase(unittest.TestCase):
     def test_code_blocks(self):
         """Test a code block with attributes."""
         text = """
-            ```
-                #mustnotbeconverted
-                #left
+            ```yaml
+            links:
+                mdlinks: boolean #convert to markdownlinks
+                convert: boolean #transform to simple string with keeping alt text or file name/ title (it removes the [[]] or []())
             ```
         """
         expected_markup = text
