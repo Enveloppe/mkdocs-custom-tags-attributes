@@ -95,14 +95,12 @@ def convert_text_attributes(markdown: str, config: Dict[str, str]) -> str:
             or re.search(r"^\s*```(.*)", line)
         ):
             code_blocks = True
-            print("START OF BLOCK ----- ", line)
         elif code_blocks and (
             line.startswith("```")
             or re.search("</?.*?>", line)
             or re.search(r"^\s*```", line)
         ):
             code_blocks = False
-            print("END OF BLOCK ----- ", line)
 
         elif (
             re.search(r"#\w+", line)
