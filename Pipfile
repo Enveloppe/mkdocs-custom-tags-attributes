@@ -10,9 +10,9 @@ python-semantic-release = "*"
 rich = "*"
 twine = "*"
 build = "*"
-mkdocs-custom-tags-attributes = {file = "."}
 
 [dev-packages]
+mkdocs-custom-tags-attributes = {file = "."}
 
 [requires]
 python_version = "3.12"

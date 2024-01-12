@@ -15,12 +15,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Python
-        uses: palewire/install-python-pipenv-pipfile@v3
+        uses: actions/setup-python@v4
         with:
           python-version: 3.12
+      - name: Install pipenv
+        run: pip install pipenv
       - name: Build
         run: |
-          pipenv install --dev
+          pipenv install
           pipenv run dist
       - name: Publish to Pypi
         uses: pypa/gh-action-pypi-publish@release/v1
