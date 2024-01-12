@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "dfb6f9b3b7d16df97bff48ff9cafc63040137849d60a9cdda48b12e056bbd70e"
+            "sha256": "dbcd6e60081bd74b27204cc1594c5969eaaa26f38053dbc0f16aad6fe97ce6a7"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -150,7 +150,7 @@
                 "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44",
                 "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"
             ],
-            "markers": "os_name == 'nt'",
+            "markers": "platform_system == 'Windows'",
             "version": "==0.4.6"
         },
         "docutils": {
@@ -347,6 +347,10 @@
             "index": "pypi",
             "markers": "python_version >= '3.7'",
             "version": "==1.5.3"
+        },
+        "mkdocs-custom-tags-attributes": {
+            "file": ".",
+            "markers": "python_version >= '3.7'"
         },
         "more-itertools": {
             "hashes": [

@@ -10,6 +10,7 @@ python-semantic-release = "*"
 rich = "*"
 twine = "*"
 build = "*"
+mkdocs-custom-tags-attributes = {file = "."}
 
 [dev-packages]
 

@@ -9,5 +9,32 @@
 		"./tests",
 		"-p",
 		"*test.py"
-	]
+	],
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		"**/.vscode": true,
+		".vscode": true,
+		"**/node_modules": true,
+		"node_modules": true,
+		"**/dist": true,
+		"dist": true,
+		"**/.idea": true,
+		".idea": true,
+		"**/.venv": true,
+		".venv": true,
+		"**/build": true,
+		"build": true,
+		"**/mkdocs_custom_tags_attributes.egg-info": true,
+		"*.egg-info": true,
+		"mkdocs_custom_tags_attributes.egg-info": true,
+		"**/*.egg-info": true,
+		"**/__pycache__": true,
+		"__pycache__": true
+	},
+	"explorerExclude.backup": {}
 }
